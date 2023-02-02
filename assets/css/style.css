@@ -81,6 +81,11 @@ img {
   height: auto;
 }
 
+i {
+  font-size: 24px;
+  color: var(--bg-slate-800);
+}
+
 button {
   background: none;
   border: none;
@@ -98,4 +103,32 @@ body {
   background-color: var(--bg-slate-50);
   color: var(--text-slate-800);
   font-size: 1.6rem;
+}
+
+header {
+  box-shadow: var(--shadow-1);
+}
+
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 2rem;
+}
+
+header .container .logo {
+  font-size: var(--fs-1);
+  color: var(--bg-purple-600);
+  font-weight: var(--fw-700);
+  
+}
+
+header .header-action {
+  display: flex;
+  gap: 2rem;
+}
+
+nav {
+  display: none;
 }
