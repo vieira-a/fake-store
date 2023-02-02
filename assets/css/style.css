@@ -154,6 +154,12 @@ main {
   line-height: 2;
 }
 
+.product-grid-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 .product-grid-header {
   display: flex;
   justify-content: space-between;
