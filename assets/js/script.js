@@ -15,9 +15,10 @@ navTooglers.forEach((item) => {
   }) 
 })
 
-// get html base elements to show products
+// get html base elements to handle products
 const productGridCard = document.getElementById('product-grid-cards');
 const productsCategory = document.querySelectorAll('[category]');
+const buttonShowAllProducts = document.getElementById('btn-show-all');
 
 let coinBase = '$'
 let productCategoryOption = ''
@@ -64,6 +65,7 @@ const renderProducts = (arr) => {
 productsCategory.forEach((item) => {
   item.addEventListener('click', () => {
     productCategoryOption = item.textContent
+    buttonShowAllProducts.classList.add('active');
     products.map((item) => {
       if(item.category === productCategoryOption) {
         productByCategoryFiltered.push(item)
@@ -82,5 +84,10 @@ function renderProductGrid () {
     renderProducts(productByCategoryFiltered)       
   }
 }
+
+buttonShowAllProducts.addEventListener('click', ()=>{
+  renderProducts(products)
+  buttonShowAllProducts.classList.remove('active')
+})
 
 renderProductGrid()

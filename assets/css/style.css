@@ -141,7 +141,8 @@ header .header-action {
   box-shadow: var(--shadow-2);
 }
 
-.navbar.active {
+.navbar.active,
+.btn-show-all-products.active {
   transition: var(--transition-1);
   display: block;
 }
@@ -246,7 +247,8 @@ main {
   padding-inline: 2rem;
 }
 
-.btn-add-to-cart {
+.btn-add-to-cart,
+.btn-show-all-products {
   width: 80%;
   display: flex;
   gap: 1rem;
@@ -265,6 +267,15 @@ main {
 .btn-add-to-cart:hover {
   background-color: var(--bg-purple-800);
   transition: var(--transition-1);
+}
+
+.btn-show-all-products:hover {
+  background-color: var(--bg-purple-800);
+  transition: var(--transition-1);
+}
+
+.btn-show-all-products {
+  display: none;
 }
 
 .btn-add-to-cart i {
