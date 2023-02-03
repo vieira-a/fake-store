@@ -1,14 +1,30 @@
 // import json file from local storage
 import products from "../data/products.json" assert { type: "json"};
 
+// show/hide menu options
+const navTooglers = document.querySelectorAll('[data-nav-toggler]');
+const navBar = document.querySelector('nav')
+
+navTooglers.forEach((item) => {
+  item.addEventListener('click', () => {
+    if(!navBar.classList.contains('active')){
+      navBar.classList.add('active') 
+    } else {
+      navBar.classList.remove('active') 
+    }
+  }) 
+})
+
 // get html base elements to show products
 const productGridCard = document.getElementById('product-grid-cards');
+const productsCategory = document.querySelectorAll('[category]');
 
-const coinBase = '$'
+let coinBase = '$'
+let productCategoryOption = ''
+let productByCategoryFiltered = []
 
-const getAllProducts = () => {
-
-  productGridCard.innerHTML = products.map(item => (
+const renderProducts = (arr) => {
+  productGridCard.innerHTML = arr.map(item => (
     `<div class="product-card" id="product-card">
       <p class="product-card-category" id="product-card-category">
         ${item.category}
@@ -41,27 +57,30 @@ const getAllProducts = () => {
       </button>
     </div>`
     )
-    
   ).join('');
-
 }
 
-getAllProducts()
-
-const navActive = () => {
-
-}
-
-const navTooglers = document.querySelectorAll('[data-nav-toggler]');
-
-const navBar = document.querySelector('nav')
-
-navTooglers.forEach((item) => {
+// get products category
+productsCategory.forEach((item) => {
   item.addEventListener('click', () => {
-    if(!navBar.classList.contains('active')){
-      navBar.classList.add('active') 
-    } else {
-      navBar.classList.remove('active') 
-    }
-  }) 
+    productCategoryOption = item.textContent
+    products.map((item) => {
+      if(item.category === productCategoryOption) {
+        productByCategoryFiltered.push(item)
+      }
+    })
+    renderProducts(productByCategoryFiltered)  
+    productByCategoryFiltered = []
+  })
 })
+
+// rendering product grid on HTML: by category or all
+function renderProductGrid () {
+  if(productByCategoryFiltered.length === 0){
+    renderProducts(products)      
+  } else {
+    renderProducts(productByCategoryFiltered)       
+  }
+}
+
+renderProductGrid()
