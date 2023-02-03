@@ -32,22 +32,12 @@
   -->
 
   <header class="header">
-    <div class="container">
+    <div class="container overlay">
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
         <i class="ph-list"></i>
       </button>
       <a href="#" class="logo">Fake Store</a>
-      <nav class="navbar">
-        <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
-          <i class="ph-x"></i>
-        </button>
-        <ul class="navbar-list">
-          <li class="navbar-item"><a href="#">electronics</a></li>
-          <li class="navbar-item"><a href="#">jewelery</a></li>
-          <li class="navbar-item"><a href="#">men's clothing</a></li>
-          <li class="navbar-item"><a href="#">women's clothing</a></li>
-        </ul>
-      </nav>
+
       <div class="header-action">
         <button class="view-cart">
           <i class="ph-shopping-cart-simple"></i>
@@ -57,6 +47,17 @@
         </button>
       </div>
     </div>
+    <nav class="navbar">
+      <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
+        <i class="ph-caret-up"></i>
+      </button>
+      <ul class="navbar-list">
+        <li class="navbar-item" data-nav-toggler><a href="#">electronics</a></li>
+        <li class="navbar-item" data-nav-toggler><a href="#">jewelery</a></li>
+        <li class="navbar-item" data-nav-toggler><a href="#">men's clothing</a></li>
+        <li class="navbar-item" data-nav-toggler><a href="#">women's clothing</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>

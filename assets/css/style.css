@@ -118,7 +118,6 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   padding: 2rem;
 }
 
@@ -135,8 +134,30 @@ header .header-action {
   gap: 2rem;
 }
 
-nav {
+.navbar {
   display: none;
+  padding: 2rem;
+  background-color: var(--bg-slate-50);
+  box-shadow: var(--shadow-2);
+}
+
+.navbar.active {
+  transition: var(--transition-1);
+  display: block;
+}
+
+
+nav ul {
+  margin-block: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+nav ul li {
+  font-size: var(--fs-5);
+  font-weight: var(--fw-700);
+  text-transform: capitalize;
 }
 
 main {

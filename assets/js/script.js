@@ -47,3 +47,21 @@ const getAllProducts = () => {
 }
 
 getAllProducts()
+
+const navActive = () => {
+
+}
+
+const navTooglers = document.querySelectorAll('[data-nav-toggler]');
+
+const navBar = document.querySelector('nav')
+
+navTooglers.forEach((item) => {
+  item.addEventListener('click', () => {
+    if(!navBar.classList.contains('active')){
+      navBar.classList.add('active') 
+    } else {
+      navBar.classList.remove('active') 
+    }
+  }) 
+})
