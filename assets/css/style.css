@@ -118,20 +118,50 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 1rem;
+}
+
+header .container i {
+  font-size: var(--fs-1);
 }
 
 header .container .logo {
   font-size: var(--fs-1);
   color: var(--text-purple-600);
   font-weight: var(--fw-700);
-  
 }
 
 header .header-action {
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+header .search-container {
+  display: flex;
+  align-items: center;
+}
+
+header .search-container .search-text {
+  width: 92%;
+  position: relative;
+  padding: .8rem 4rem;
+  margin-inline: auto;
+  border: 1px solid var(--text-slate-300);
+  border-radius: var(--radius-8);
+  outline: none;
+}
+
+header .search-container .search-text:focus {
+  border: none;
+  outline: 1px solid var(--text-purple-600);
+}
+
+header .search-container #search-icon {
+  position: absolute;
+  font-size: var(--fs-3);
+  z-index: 1;
+  margin-left: 3rem;
 }
 
 .navbar {
@@ -162,12 +192,11 @@ nav ul li {
 }
 
 main {
-  margin-bottom: 6rem;
-  margin-inline: 2rem;
+  margin: 6rem 2rem;
 }
 
 .section-hero {
-  margin-block: 6rem;
+  margin-bottom: 6rem;
 }
 
 
