@@ -111,6 +111,7 @@ body {
 }
 
 header {
+  padding: 1rem;
   box-shadow: var(--shadow-2);
 }
 
@@ -118,7 +119,8 @@ header .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem;
+  line-height: 0;
+  margin-bottom: 1rem;
 }
 
 header .container i {
@@ -143,7 +145,7 @@ header .search-container {
 }
 
 header .search-container .search-text {
-  width: 92%;
+  width: 98%;
   position: relative;
   padding: .8rem 4rem;
   margin-inline: auto;
@@ -161,7 +163,7 @@ header .search-container #search-icon {
   position: absolute;
   font-size: var(--fs-3);
   z-index: 1;
-  margin-left: 3rem;
+  margin-left: 2rem;
 }
 
 .navbar {
