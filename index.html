@@ -30,7 +30,7 @@
     HEADER
   -->
 
-  <header class="header">
+  <header class="header" id="home"  >
     <div class="container overlay">
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
         <i class="ph-list"></i>
@@ -38,10 +38,10 @@
       <a href="#" class="logo">Fake Store</a>
 
       <div class="header-action">
-        <button class="view-cart">
-          <i class="ph-shopping-cart-simple"></i>
+        <button class="view-cart" aria-label="view cart">
+            <i class="ph-shopping-cart-simple"></i>
         </button>
-        <button class="view-user">
+        <button class="view-user" aria-label="view user">
           <i class="ph-user-circle"></i>
         </button>
       </div>
@@ -87,7 +87,7 @@
             <h4>Products > Category: All</h4>
           </div>   
           <div class="product-order-by">
-            <select name="product-select-order-by" id="product-select-order-by">
+            <select name="product-select-order-by" id="product-select-order-by" aria-label="order products">
               <option value="price-low-to-high">Price: low to high</option>
               <option value="price-high-to-low">Price: high to low</option>
             </select>
@@ -117,6 +117,9 @@
       <p>&copy; 2022. All rights reserved</p>
     </div>
   </footer>
+  <a href="#home" class="back-to-top" aria-label="back to top">
+    <i class="ph-caret-circle-up"></i>
+  </a>
 </body>
 <!--
   CUSTOM SCRIPTS

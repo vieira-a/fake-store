@@ -342,3 +342,16 @@ footer {
   text-align: center;
   font-size: var(--fs-3);
 }
+
+.back-to-top {
+  position: fixed;
+  right: 3rem;
+  bottom: 1rem;
+  margin-inline: auto;
+}
+
+
+.back-to-top i {
+  font-size: 40px;
+  color: var(--text-purple-600);
+}
