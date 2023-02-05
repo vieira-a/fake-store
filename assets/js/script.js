@@ -90,4 +90,14 @@ buttonShowAllProducts.addEventListener('click', ()=>{
   buttonShowAllProducts.classList.remove('active')
 })
 
+const backToTop = document.getElementById('btn-back-to-top');
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 350) {
+    backToTop.classList.add('active')
+  } else {
+    backToTop.classList.remove('active')
+  }
+});
+
 renderProductGrid()

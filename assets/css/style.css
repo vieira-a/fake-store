@@ -348,8 +348,14 @@ footer {
   right: 3rem;
   bottom: 1rem;
   margin-inline: auto;
+  opacity: 0;
+  visibility: hidden;
 }
 
+.back-to-top.active {
+  opacity: 1;
+  visibility: visible;
+}
 
 .back-to-top i {
   font-size: 40px;
