@@ -111,8 +111,13 @@ body {
 }
 
 header {
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  top: 0;
   padding: 1rem;
   box-shadow: var(--shadow-2);
+  background-color: var(--bg-slate-50);
 }
 
 header .container {
@@ -169,7 +174,6 @@ header .search-container #search-icon {
 .navbar {
   display: none;
   padding: 2rem;
-  background-color: var(--bg-slate-50);
   box-shadow: var(--shadow-2);
 }
 
@@ -194,13 +198,13 @@ nav ul li {
 }
 
 main {
-  margin: 6rem 2rem;
+  margin-inline: 2rem;
 }
 
 .section-hero {
+  padding-top: 12rem;
   margin-bottom: 6rem;
 }
-
 
 .hero-header h1 {
   font-size: var(--fs-1);
