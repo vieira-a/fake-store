@@ -125,7 +125,7 @@ header .container {
   align-items: center;
   justify-content: space-between;
   line-height: 0;
-  margin-bottom: 1rem;
+  padding-block: .5rem;
 }
 
 header .container i {
@@ -145,8 +145,9 @@ header .header-action {
 }
 
 header .search-container {
-  display: flex;
+  display: none;
   align-items: center;
+  justify-content: center;
 }
 
 header .search-container .search-text {
