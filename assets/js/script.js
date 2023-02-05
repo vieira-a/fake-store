@@ -85,13 +85,14 @@ function renderProductGrid () {
   }
 }
 
+// render button to show all products
 buttonShowAllProducts.addEventListener('click', ()=>{
   renderProducts(products)
   buttonShowAllProducts.classList.remove('active')
 })
 
+// add button back to top on scrollY
 const backToTop = document.getElementById('btn-back-to-top');
-
 window.addEventListener("scroll", () => {
   if (window.scrollY > 350) {
     backToTop.classList.add('active')
