@@ -26,7 +26,6 @@ let productCategoryOption = ''
 let productByCategoryFiltered = []
 let btnAddToCart = ''
 let cartProducts = []
-let cartAmount = 0
 
 const renderProducts = (arr) => {
   productGridCard.innerHTML = arr.map(item => (
@@ -75,10 +74,6 @@ const renderProducts = (arr) => {
           price: products[itemId].price,
           amount: 1
       })
-      cartProducts.map((itemPrice) => {
-        cartAmount += itemPrice
-        return cartAmount
-      })
       console.log('added to cart', cartProducts)
     })
   })}
@@ -111,11 +106,27 @@ const renderCartProducts = () => {
   ).join('');
 }
 
+
+const cartAmountInfo = document.getElementById('section-cart-amount');
+
+const getCardAmount = () => {
+  let cartAmount = 0
+  cartProducts.forEach(item => {
+    cartAmount += Number(item.price)
+  })
+  cartAmountInfo.innerHTML = 
+  `
+  <p>(${cartProducts.length}) item(s)</p>
+  <p>${coinBase} ${cartAmount}</p>
+  `
+}
+
 const buttonViewCart = document.getElementById('view-cart');
 const cartSection = document.getElementById('cart');
 
 buttonViewCart.addEventListener('click', () => {
   renderCartProducts()
+  getCardAmount()
   cartSection.classList.add('active')
 })
 

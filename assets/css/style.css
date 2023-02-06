@@ -465,3 +465,11 @@ footer {
   font-size: var(--fs-2);
   color: var(--bg-purple-600);
 }
+
+.cart-amount {
+  padding-block: 2.4rem;
+  display: flex;
+  justify-content: space-between;
+  color: var(--bg-purple-600);
+  font-weight: var(--fw-700);
+}
