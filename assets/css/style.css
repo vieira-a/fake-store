@@ -45,6 +45,7 @@
   --radius-16: 16px;
   --radius-12: 12px;
   --radius-8: 8px;
+  --radius-6: 6px;
 
   /* transitions */
   --transition-1: 0.25s ease;
@@ -88,6 +89,8 @@ img {
 i {
   font-size: 24px;
   color: var(--bg-slate-800);
+  display: flex;
+  align-items: center;
 }
 
 button {
@@ -365,4 +368,102 @@ footer {
 .back-to-top i {
   font-size: 40px;
   color: var(--text-purple-600);
+}
+
+#cart {
+  position: fixed;
+  margin-inline: auto;
+  top: 0;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-slate-50);
+}
+
+.cart-header {
+  display: flex;
+  padding: 1rem 2.4rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-purple-600);
+  box-shadow: var(--shadow-1);
+}
+
+.cart-header .logo,
+.cart-close-btn i {
+  font-size: var(--fs-1);
+  color: var(--text-slate-50);
+  font-weight: var(--fw-700);
+}
+
+.cart-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.4rem;
+  padding: 2.4rem;
+}
+
+.cart-title {
+  color: var(--bg-purple-600);
+}
+
+.cart-product-content {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--text-slate-500);
+  border-radius: var(--radius-8);
+  display: flex;
+  gap: 2.4rem;
+  padding: 2.4rem 1rem;
+}
+
+.cart-product-content img {
+  max-width: 20%;
+}
+
+.cart-product-totals {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cart-product-amount {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--text-slate-500);
+  border-radius: var(--radius-8);
+}
+
+.btn-amount,
+.product-amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .5rem .5rem;
+  font-weight: var(--fw-700);
+}
+
+.product-amount {
+  padding-inline: 2rem;
+  border-inline: 1px solid var(--text-slate-500);
+}
+
+#btn-trash {
+  border-top-right-radius: var(--radius-6);
+  border-bottom-right-radius: var(--radius-6);
+  background-color: var(--bg-purple-600);
+}
+#btn-trash i {
+  color: var(--text-slate-50);
+}
+
+.product-price {
+  font-size: var(--fs-2);
+  color: var(--bg-purple-600);
+}
+
+.cart-footer {
+  margin-top: 12rem;
+  padding-block: 2.4rem;
+  box-shadow: var(--shadow-3);
 }

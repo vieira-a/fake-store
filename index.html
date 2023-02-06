@@ -29,7 +29,7 @@
   <!--
     HEADER
   -->
-
+  
   <header class="header">
     <div class="container overlay">
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
@@ -122,7 +122,44 @@
   <a href="#home" class="back-to-top" id="btn-back-to-top" aria-label="back to top">
     <i class="ph-caret-circle-up"></i>
   </a>
+  <section id="cart">
+    <div class="cart-header">
+      <a href="#" class="logo">Fake Store</a>
+      <button class="cart-close-btn" aria-label="close cart" data-cart-toggler>
+        <i class="ph-x"></i>
+      </button>
+    </div>
+
+    <div class="cart-content">  
+      <h3 class="cart-title">Cart</h3>
+    
+      <div class="cart-product-content">
+        <img src="https://fakestoreapi.com/img/61mtL65D4cL._AC_SX679_.jpg" alt="product on the cart">
+        <p class="cart-product-title">Product title</p>
+      </div>
+
+      <div class="cart-product-totals">
+        <div class="cart-product-amount">
+          <button class="btn-amount" id="btn-minus"><i class="ph-minus" aria-label="decrement amount"></i></button>
+          <p class="product-amount">1</p>
+          <button class="btn-amount" id="btn-plus" aria-label="increment amount"><i class="ph-plus"></i>
+          </button>
+          <button class="btn-amount" id="btn-trash" aria-label="remove item from cart"><i class="ph-trash"></i></button>
+        </div>
+        <div class="cart-product-price">
+          <p class="product-price">$ 1777.00</p>
+        </div>
+      </div>
+    </div>
+    <div class="cart-footer">
+      <div class="footer-copyright">
+        <a href="#" class="logo">Fake Store</a>
+        <p>&copy; 2022. All rights reserved</p>
+      </div>
+    </div>
+  </section>
 </body>
+
 <!--
   CUSTOM SCRIPTS
 -->
