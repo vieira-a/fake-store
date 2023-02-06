@@ -79,6 +79,7 @@ const renderProducts = (arr) => {
         price: products[itemId].price,
         amount: 1
       })
+      item.disabled = true
       viewCartAmount.textContent = cartProducts.length
     })    
   })
