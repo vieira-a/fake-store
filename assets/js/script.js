@@ -86,6 +86,7 @@ const renderProducts = (arr) => {
 }
 
 const renderCartProducts = () => {
+
   productGridCart.innerHTML = cartProducts.map(item => (
     `<div class="cart-card">
       
@@ -100,7 +101,7 @@ const renderCartProducts = () => {
           <p class="product-amount">${item.amount}</p>
           <button class="btn-amount" id="btn-plus" aria-label="increment amount"><i class="ph-plus"></i>
           </button>
-          <button class="btn-amount" id="btn-trash" aria-label="remove item from cart"><i class="ph-trash"></i></button>
+          <button class="btn-amount" productId=${item.id} id="btn-trash" aria-label="remove item from cart"><i class="ph-trash"></i></button>
         </div>
         <div class="cart-product-price">
          <p class="product-price">${coinBase} ${item.price}</p>
@@ -109,6 +110,23 @@ const renderCartProducts = () => {
     </div>
     `
   )).join('');
+
+  const buttonTrash = document.querySelectorAll('#btn-trash');  
+  buttonTrash.forEach(item => {
+    let indexOfBtnTrash = item.getAttribute('productId')
+    
+    console.log('*** BEFORE REMOVE', cartProducts)
+
+    item.addEventListener('click', () => {
+      console.log(indexOfBtnTrash)
+      
+      cartProducts.splice(cartProducts.indexOf(indexOfBtnTrash), 1)
+      console.log('*** AFTER REMOVE', cartProducts)
+      renderCartProducts()
+    })
+  })
+  
+  
 }
 const cartAmountInfo = document.getElementById('section-cart-amount');
 
