@@ -21,9 +21,6 @@ const productGridCart = document.getElementById('product-cart-grid');
 const productsCategory = document.querySelectorAll('[category]');
 const buttonShowAllProducts = document.getElementById('btn-show-all');
 const viewCartAmount = document.getElementById('view-cart-amount');
-console.log(viewCartAmount)
-
-
 
 let coinBase = '$'
 let productCategoryOption = ''
@@ -69,21 +66,23 @@ const renderProducts = (arr) => {
     )
   ).join('');
 
-  btnAddToCart = document.querySelectorAll('[add-to-cart]')
-  btnAddToCart.forEach((item) => {
-    item.addEventListener('click', () => {
+  // fill cartProducts array
+  btnAddToCart = document.querySelectorAll('[add-to-cart]');
+
+  btnAddToCart.forEach((item) => { 
+    item.addEventListener('click', () => {  
       let itemId = item.id - 1
       cartProducts.push({
-          id: products[itemId].id,
-          imagesrc: products[itemId].image,
-          title: products[itemId].title, 
-          price: products[itemId].price,
-          amount: 1
+        id: products[itemId].id,
+        imagesrc: products[itemId].image,
+        title: products[itemId].title, 
+        price: products[itemId].price,
+        amount: 1
       })
       viewCartAmount.textContent = cartProducts.length
-      console.log('added to cart', cartProducts)
-    })
-  })}
+    })    
+  })
+}
 
 const renderCartProducts = () => {
   productGridCart.innerHTML = cartProducts.map(item => (
@@ -108,12 +107,8 @@ const renderCartProducts = () => {
       </div>
     </div>
     `
-    )
-    
-  ).join('');
+  )).join('');
 }
-
-
 const cartAmountInfo = document.getElementById('section-cart-amount');
 
 const getCardAmount = () => {
@@ -129,12 +124,18 @@ const getCardAmount = () => {
 }
 
 const buttonViewCart = document.getElementById('view-cart');
+const buttonCloseCart = document.getElementById('cart-close');
 const cartSection = document.getElementById('cart');
+const bodyMainSection = document.getElementById('main')
 
 buttonViewCart.addEventListener('click', () => {
   renderCartProducts()
   getCardAmount()
   cartSection.classList.add('active')
+})
+
+buttonCloseCart.addEventListener('click', ()=>{
+  cartSection.classList.remove('active')
 })
 
 renderProducts(products)
