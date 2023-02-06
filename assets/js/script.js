@@ -17,12 +17,16 @@ navTooglers.forEach((item) => {
 
 // get html base elements to handle products
 const productGridCard = document.getElementById('product-grid-cards');
+const productGridCart = document.getElementById('product-cart-grid');
 const productsCategory = document.querySelectorAll('[category]');
 const buttonShowAllProducts = document.getElementById('btn-show-all');
 
 let coinBase = '$'
 let productCategoryOption = ''
 let productByCategoryFiltered = []
+let btnAddToCart = ''
+let cartProducts = []
+let cartAmount = 0
 
 const renderProducts = (arr) => {
   productGridCard.innerHTML = arr.map(item => (
@@ -52,14 +56,70 @@ const renderProducts = (arr) => {
         ${item.rating.count}
         </p>
       </div>
-      <button class="btn-add-to-cart" id="${item.id}">
+      <button class="btn-add-to-cart" id="${item.id}" add-to-cart>
         <i class="ph-bag"></i>
         <span>Add to cart</span>
       </button>
     </div>`
     )
   ).join('');
+
+  btnAddToCart = document.querySelectorAll('[add-to-cart]')
+  btnAddToCart.forEach((item) => {
+    item.addEventListener('click', () => {
+      let itemId = item.id - 1
+      cartProducts.push({
+          id: products[itemId].id,
+          imagesrc: products[itemId].image,
+          title: products[itemId].title, 
+          price: products[itemId].price,
+          amount: 1
+      })
+      cartProducts.map((itemPrice) => {
+        cartAmount += itemPrice
+        return cartAmount
+      })
+      console.log('added to cart', cartProducts)
+    })
+  })}
+
+const renderCartProducts = () => {
+  productGridCart.innerHTML = cartProducts.map(item => (
+    `<div class="cart-card">
+      
+      <div class="cart-card-header">
+        <img src=${item.imagesrc} alt="Product Image" id="cart-card-img">
+        <p>${item.title}</p>
+      </div>
+
+      <div class="cart-product-totals">
+        <div class="cart-product-amount">
+          <button class="btn-amount" id="btn-minus"><i class="ph-minus" aria-label="decrement amount"></i></button>
+          <p class="product-amount">${item.amount}</p>
+          <button class="btn-amount" id="btn-plus" aria-label="increment amount"><i class="ph-plus"></i>
+          </button>
+          <button class="btn-amount" id="btn-trash" aria-label="remove item from cart"><i class="ph-trash"></i></button>
+        </div>
+        <div class="cart-product-price">
+         <p class="product-price">${coinBase} ${item.price}</p>
+        </div>
+      </div>
+    </div>
+    `
+    )
+    
+  ).join('');
 }
+
+const buttonViewCart = document.getElementById('view-cart');
+const cartSection = document.getElementById('cart');
+
+buttonViewCart.addEventListener('click', () => {
+  renderCartProducts()
+  cartSection.classList.add('active')
+})
+
+renderProducts(products)
 
 // get products category
 productsCategory.forEach((item) => {
@@ -76,15 +136,6 @@ productsCategory.forEach((item) => {
   })
 })
 
-// rendering product grid on HTML: by category or all
-function renderProductGrid () {
-  if(productByCategoryFiltered.length === 0){
-    renderProducts(products)      
-  } else {
-    renderProducts(productByCategoryFiltered)       
-  }
-}
-
 // render button to show all products
 buttonShowAllProducts.addEventListener('click', ()=>{
   renderProducts(products)
@@ -100,5 +151,3 @@ window.addEventListener("scroll", () => {
     backToTop.classList.remove('active')
   }
 });
-
-renderProductGrid()

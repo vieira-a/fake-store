@@ -380,6 +380,14 @@ footer {
   background-color: var(--bg-slate-50);
 }
 
+.section-cart {
+  display: none;
+}
+
+.section-cart.active {
+  display: block;
+}
+
 .cart-header {
   display: flex;
   padding: 1rem 2.4rem;
@@ -395,31 +403,29 @@ footer {
   color: var(--text-slate-50);
   font-weight: var(--fw-700);
 }
-
 .cart-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2.4rem;
   padding: 2.4rem;
 }
-
 .cart-title {
   color: var(--bg-purple-600);
 }
 
-.cart-product-content {
+.cart-card {
   display: flex;
-  align-items: center;
-  border: 1px solid var(--text-slate-500);
-  border-radius: var(--radius-8);
-  display: flex;
+  flex-direction: column;
   gap: 2.4rem;
-  padding: 2.4rem 1rem;
+  padding-block: 2.4rem;
+  border-bottom: 2px solid var(--bg-purple-600);
 }
 
-.cart-product-content img {
-  max-width: 20%;
+.cart-card-header {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.cart-card-header img {
+  max-width: 25%;
 }
 
 .cart-product-totals {
@@ -427,32 +433,29 @@ footer {
   align-items: center;
   justify-content: space-between;
 }
+
 .cart-product-amount {
   display: flex;
-  align-items: center;
   border: 1px solid var(--text-slate-500);
   border-radius: var(--radius-8);
-}
 
-.btn-amount,
-.product-amount {
+}
+.btn-amount {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: .5rem .5rem;
-  font-weight: var(--fw-700);
+  padding-inline: .5rem;
 }
-
 .product-amount {
-  padding-inline: 2rem;
+  padding: .5rem 1.25rem;
   border-inline: 1px solid var(--text-slate-500);
 }
 
 #btn-trash {
+  background-color: var(--bg-purple-600);
   border-top-right-radius: var(--radius-6);
   border-bottom-right-radius: var(--radius-6);
-  background-color: var(--bg-purple-600);
 }
+
 #btn-trash i {
   color: var(--text-slate-50);
 }
@@ -460,10 +463,4 @@ footer {
 .product-price {
   font-size: var(--fs-2);
   color: var(--bg-purple-600);
-}
-
-.cart-footer {
-  margin-top: 12rem;
-  padding-block: 2.4rem;
-  box-shadow: var(--shadow-3);
 }
