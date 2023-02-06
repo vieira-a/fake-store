@@ -378,6 +378,7 @@ footer {
   width: 100vw;
   height: 100vh;
   background-color: var(--bg-slate-50);
+  overflow-y: auto;
 }
 
 .section-cart {
