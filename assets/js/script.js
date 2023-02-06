@@ -20,12 +20,18 @@ const productGridCard = document.getElementById('product-grid-cards');
 const productGridCart = document.getElementById('product-cart-grid');
 const productsCategory = document.querySelectorAll('[category]');
 const buttonShowAllProducts = document.getElementById('btn-show-all');
+const viewCartAmount = document.getElementById('view-cart-amount');
+console.log(viewCartAmount)
+
+
 
 let coinBase = '$'
 let productCategoryOption = ''
 let productByCategoryFiltered = []
 let btnAddToCart = ''
 let cartProducts = []
+let amountViewCart = 0
+viewCartAmount.textContent = amountViewCart
 
 const renderProducts = (arr) => {
   productGridCard.innerHTML = arr.map(item => (
@@ -74,6 +80,7 @@ const renderProducts = (arr) => {
           price: products[itemId].price,
           amount: 1
       })
+      viewCartAmount.textContent = cartProducts.length
       console.log('added to cart', cartProducts)
     })
   })}
