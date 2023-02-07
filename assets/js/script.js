@@ -120,6 +120,8 @@ const renderCartProducts = () => {
       item.addEventListener('click', ()=>{        
         cartProducts = cartProducts.filter(item => item.id != indexOfBtnTrash)
         //console.log('**** AFTER REMOVE', cartProducts)
+        viewCartAmount.textContent = cartProducts.length
+        getCardAmount()
         renderCartProducts()
       })
   })
