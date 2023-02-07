@@ -87,30 +87,47 @@ const renderProducts = (arr) => {
 }
 
 const renderCartProducts = () => {
-
-  productGridCart.innerHTML = cartProducts.map(item => (
-    `<div class="cart-card">
-      
-      <div class="cart-card-header">
-        <img src=${item.imagesrc} alt="Product Image" id="cart-card-img">
-        <p>${item.title}</p>
-      </div>
-
-      <div class="cart-product-totals">
-        <div class="cart-product-amount">
-          <button class="btn-amount" id="btn-minus"><i class="ph-minus" aria-label="decrement amount"></i></button>
-          <p class="product-amount">${item.amount}</p>
-          <button class="btn-amount" id="btn-plus" aria-label="increment amount"><i class="ph-plus"></i>
-          </button>
-          <button class="btn-amount" productId=${item.id} id="btn-trash" aria-label="remove item from cart"><i class="ph-trash"></i></button>
+  let buttonBackToBuy = ''
+  const cartEmptyMsg = 'Your cart is empty!'
+  if(cartProducts.length > 0) {
+    productGridCart.innerHTML = cartProducts.map(item => (
+      `<div class="cart-card">
+        
+        <div class="cart-card-header">
+          <img src=${item.imagesrc} alt="Product Image" id="cart-card-img">
+          <p>${item.title}</p>
         </div>
-        <div class="cart-product-price">
-         <p class="product-price">${coinBase} ${item.price}</p>
+
+        <div class="cart-product-totals">
+          <div class="cart-product-amount">
+            <button class="btn-amount" id="btn-minus"><i class="ph-minus" aria-label="decrement amount"></i></button>
+            <p class="product-amount">${item.amount}</p>
+            <button class="btn-amount" id="btn-plus" aria-label="increment amount"><i class="ph-plus"></i>
+            </button>
+            <button class="btn-amount" productId=${item.id} id="btn-trash" aria-label="remove item from cart"><i class="ph-trash"></i></button>
+          </div>
+          <div class="cart-product-price">
+          <p class="product-price">${coinBase} ${item.price}</p>
+          </div>
         </div>
       </div>
-    </div>
-    `
-  )).join('');
+      `
+    )).join('');
+  } else {
+    productGridCart.innerHTML = 
+    `<div class="empty-cart">
+      <h2 class="msg-empty-cart">${cartEmptyMsg}</h2>
+        <button id="btn-back-to-buy">
+          <i class="ph-shopping-bag-open"></i>
+          <span>Back to Buy</span>
+        </button>
+    </div>`
+
+    buttonBackToBuy = document.getElementById('btn-back-to-buy')
+    buttonBackToBuy.addEventListener('click', ()=> {
+      cartSection.classList.remove('active')
+    })
+  }
 
   const buttonTrash = document.querySelectorAll('#btn-trash');  
   //console.log('**** BEFORE REMOVE', cartProducts)
@@ -126,6 +143,7 @@ const renderCartProducts = () => {
       })
   })
 }
+
 const cartAmountInfo = document.getElementById('section-cart-amount');
 
 const getCardAmount = () => {
@@ -136,7 +154,7 @@ const getCardAmount = () => {
   cartAmountInfo.innerHTML = 
   `
   <p>(${cartProducts.length}) item(s)</p>
-  <p>${coinBase} ${cartAmount}</p>
+  <p>${coinBase} ${cartAmount.toFixed(2)}</p>
   `
 }
 

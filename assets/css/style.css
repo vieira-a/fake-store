@@ -301,7 +301,8 @@ main {
 }
 
 .btn-add-to-cart,
-.btn-show-all-products {
+.btn-show-all-products,
+#btn-back-to-buy {
   width: 80%;
   display: flex;
   gap: 1rem;
@@ -327,11 +328,17 @@ main {
   transition: var(--transition-1);
 }
 
+#btn-back-to-buy:hover {
+  background-color: var(--bg-purple-800);
+  transition: var(--transition-1);
+}
+
 .btn-show-all-products {
   display: none;
 }
 
-.btn-add-to-cart i {
+.btn-add-to-cart i,
+#btn-back-to-buy i {
   font-weight: var(--fw-700);
   color: var(--bg-slate-50);
 }
@@ -487,4 +494,17 @@ footer {
   justify-content: space-between;
   color: var(--bg-purple-600);
   font-weight: var(--fw-700);
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+  padding-block: 2.4rem;
+}
+
+.empty-cart h2 {
+  color: var(--bg-purple-600);
 }
