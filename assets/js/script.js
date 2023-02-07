@@ -72,13 +72,14 @@ const renderProducts = (arr) => {
   btnAddToCart.forEach((item) => { 
     item.addEventListener('click', () => {  
       let itemId = item.id - 1
-      cartProducts.push({
-        id: products[itemId].id,
-        imagesrc: products[itemId].image,
-        title: products[itemId].title, 
-        price: products[itemId].price,
-        amount: 1
-      })
+      cartProducts.push(
+        {
+          id: products[itemId].id,
+          imagesrc: products[itemId].image,
+          title: products[itemId].title, 
+          price: products[itemId].price,
+          amount: 1
+        })
       item.disabled = true
       viewCartAmount.textContent = cartProducts.length
     })    
@@ -112,21 +113,16 @@ const renderCartProducts = () => {
   )).join('');
 
   const buttonTrash = document.querySelectorAll('#btn-trash');  
+  //console.log('**** BEFORE REMOVE', cartProducts)
+  
   buttonTrash.forEach(item => {
     let indexOfBtnTrash = item.getAttribute('productId')
-    
-    console.log('*** BEFORE REMOVE', cartProducts)
-
-    item.addEventListener('click', () => {
-      console.log(indexOfBtnTrash)
-      
-      cartProducts.splice(cartProducts.indexOf(indexOfBtnTrash), 1)
-      console.log('*** AFTER REMOVE', cartProducts)
-      renderCartProducts()
-    })
+      item.addEventListener('click', ()=>{        
+        cartProducts = cartProducts.filter(item => item.id != indexOfBtnTrash)
+        //console.log('**** AFTER REMOVE', cartProducts)
+        renderCartProducts()
+      })
   })
-  
-  
 }
 const cartAmountInfo = document.getElementById('section-cart-amount');
 
