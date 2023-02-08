@@ -1,6 +1,31 @@
 // import json file from local storage
 import products from "../data/products.json" assert { type: "json"};
 
+//get categories
+let menuItems = []
+
+function getCategories(){
+  let categoriesMenu = []
+  products.map((item)=>{
+    categoriesMenu.push(item.category)
+    menuItems = [... new Set(categoriesMenu)]
+  })
+}
+
+const menuItemsList = document.getElementById('menu-list');
+
+function setMenuItems(){
+  menuItemsList.innerHTML = menuItems.map(category => (
+    `
+    <li class="navbar-item" data-nav-toggler>
+      <a category href="#">${category}</a>
+    </li>
+    `
+  )).join('')
+}
+
+getCategories()
+
 // show/hide menu options
 const navTooglers = document.querySelectorAll('[data-nav-toggler]');
 const navBar = document.querySelector('nav')
@@ -14,6 +39,7 @@ navTooglers.forEach((item) => {
     }
   }) 
 })
+setMenuItems()
 
 // get html base elements to use in render products process
 const productGridCard = document.getElementById('product-grid-cards');
@@ -260,6 +286,7 @@ productsCategory.forEach((item) => {
   item.addEventListener('click', () => {
     productCategoryOption = item.textContent
     buttonShowAllProducts.classList.add('active');
+    console.log(productCategoryOption)
     products.map((item) => {
       if(item.category === productCategoryOption) {
         productByCategoryFiltered.push(item)
