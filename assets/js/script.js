@@ -286,7 +286,6 @@ productsCategory.forEach((item) => {
   item.addEventListener('click', () => {
     productCategoryOption = item.textContent
     buttonShowAllProducts.classList.add('active');
-    console.log(productCategoryOption)
     products.map((item) => {
       if(item.category === productCategoryOption) {
         productByCategoryFiltered.push(item)
