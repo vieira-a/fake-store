@@ -350,6 +350,7 @@ main {
 }
 
 footer {
+  margin-top: 4rem;
   padding-block: 4rem;
   display: flex;
   flex-direction: column;
