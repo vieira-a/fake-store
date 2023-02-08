@@ -1,5 +1,5 @@
 <h1 align="center"> Fake Store </h1>
-<p>Under construction</p>
+<p align="center">Under construction</p>
 
 <p align="center">
 Personal project to practice knoldgements in HTML, CSS and JavaScript.
