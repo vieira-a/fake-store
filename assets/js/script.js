@@ -21,6 +21,7 @@ const productGridCart = document.getElementById('product-cart-grid');
 const productsCategory = document.querySelectorAll('[category]');
 const buttonShowAllProducts = document.getElementById('btn-show-all');
 const viewCartAmount = document.getElementById('view-cart-amount');
+const viewCategoryInfo = document.getElementById('product-category-info');
 let coinBase = '$'
 let productCategoryOption = ''
 let productByCategoryFiltered = []
@@ -152,6 +153,7 @@ const renderCartProducts = () => {
      
     //update product amount on the cart
     let indexOfBtnIncrement
+    let indexOfBtnDecrement
     cartProducts.map((cartProductItem) => {
       //increment
       buttonIncrementAmount.forEach(item => {
@@ -163,6 +165,25 @@ const renderCartProducts = () => {
             cartProductItem.amount++
             cartProductItem.total = updateTotalPrice(cartProductItem.amount, cartProductItem.price)   
             console.log(`*** AFTER *** amount: ${cartProductItem.amount}*** price: ${cartProductItem.total}`)       
+          } 
+          getCardAmount()
+          renderCartProducts()  
+        })               
+      })
+      //decrement
+      buttonDecrementAmount.forEach(item => {
+        item.addEventListener('click', () => {    
+          indexOfBtnDecrement = Number(item.getAttribute('productId'));
+          //console.log(`*** BEFORE *** amount: ${cartProductItem.amount}*** price: ${cartProductItem.price}`)    
+          if(cartProductItem.id === indexOfBtnDecrement){
+            //console.log(`*** product id: ${cartProductItem.id} *** index button: ${indexOfBtnDecrement}`)
+            cartProductItem.amount--
+            if(cartProductItem.amount === 0){
+              cartProducts = cartProducts.filter(item => item.id != indexOfBtnDecrement)
+            } else {
+              cartProductItem.total = updateTotalPrice(cartProductItem.amount, cartProductItem.price)   
+              //console.log(`*** AFTER *** amount: ${cartProductItem.amount}*** price: ${cartProductItem.total}`)       
+            }
           } 
           getCardAmount()
           renderCartProducts()  
@@ -213,6 +234,7 @@ buttonCloseCart.addEventListener('click', ()=>{
 })
 
 renderProducts(products)
+viewCategoryInfo.innerHTML = `<h4>Products > Category: All</h4>`
 
 // get products category
 productsCategory.forEach((item) => {
@@ -222,6 +244,7 @@ productsCategory.forEach((item) => {
     products.map((item) => {
       if(item.category === productCategoryOption) {
         productByCategoryFiltered.push(item)
+        viewCategoryInfo.innerHTML = `<h4>Products > Category: ${productCategoryOption}</h4>`
       }
     })
     renderProducts(productByCategoryFiltered)  
@@ -232,6 +255,7 @@ productsCategory.forEach((item) => {
 // render button to show all products
 buttonShowAllProducts.addEventListener('click', ()=>{
   renderProducts(products)
+  viewCategoryInfo.innerHTML = `<h4>Products > Category: All</h4>`
   buttonShowAllProducts.classList.remove('active')
 })
 

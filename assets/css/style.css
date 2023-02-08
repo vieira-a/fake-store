@@ -229,6 +229,12 @@ main {
   font-weight: var(--fw-700);
   color: var(--bg-purple-600);
 }
+
+#product-category-info h4 {
+  font-size: var(--fs-4);
+  text-transform: capitalize;
+ }
+
 .product-grid-cards {
   display: flex;
   flex-direction: column;
