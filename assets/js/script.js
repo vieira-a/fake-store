@@ -13,6 +13,7 @@ function getCategories(){
 }
 
 const menuItemsList = document.getElementById('menu-list');
+const footerMenuList = document.getElementById('footer-menu-list');
 
 function setMenuItems(){
   menuItemsList.innerHTML = menuItems.map(category => (
@@ -22,8 +23,15 @@ function setMenuItems(){
     </li>
     `
   )).join('')
-}
 
+  footerMenuList.innerHTML = menuItems.map(category => (
+    `
+    <li class="footer-menu-item">
+      <a category href="#">${category}</a>
+    </li>
+    `
+  )).join('')  
+}
 getCategories()
 
 // show/hide menu options
