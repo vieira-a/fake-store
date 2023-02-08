@@ -15,13 +15,12 @@ navTooglers.forEach((item) => {
   }) 
 })
 
-// get html base elements to handle products
+// get html base elements to use in render products process
 const productGridCard = document.getElementById('product-grid-cards');
 const productGridCart = document.getElementById('product-cart-grid');
 const productsCategory = document.querySelectorAll('[category]');
 const buttonShowAllProducts = document.getElementById('btn-show-all');
 const viewCartAmount = document.getElementById('view-cart-amount');
-
 let coinBase = '$'
 let productCategoryOption = ''
 let productByCategoryFiltered = []
@@ -29,6 +28,10 @@ let btnAddToCart = ''
 let cartProducts = []
 let amountViewCart = 0
 viewCartAmount.textContent = amountViewCart
+
+function updateTotalPrice(amount, price){
+  return amount * price
+}
 
 const renderProducts = (arr) => {
   productGridCard.innerHTML = arr.map(item => (
@@ -52,10 +55,10 @@ const renderProducts = (arr) => {
       </div>
       <div class="product-card-content-rating">
         <p class="product-card-content-rating-rate" id="product-card-content-rating-rate">
-        ${item.rating.rate}
+        Rating: ${item.rating.rate} 
         </p>
         <p class="product-card-content-rating-count" id="product-card-content-rating-count">
-        ${item.rating.count}
+        Votes: ${item.rating.count}
         </p>
       </div>
       <button class="btn-add-to-cart" id="${item.id}" add-to-cart>
@@ -70,6 +73,7 @@ const renderProducts = (arr) => {
   btnAddToCart = document.querySelectorAll('[add-to-cart]');
 
   btnAddToCart.forEach((item) => { 
+
     item.addEventListener('click', () => {  
       let itemId = item.id - 1
       cartProducts.push(
@@ -77,8 +81,9 @@ const renderProducts = (arr) => {
           id: products[itemId].id,
           imagesrc: products[itemId].image,
           title: products[itemId].title, 
+          amount: 1,
           price: products[itemId].price,
-          amount: 1
+          total: updateTotalPrice(1, products[itemId].price)
         })
       item.disabled = true
       viewCartAmount.textContent = cartProducts.length
@@ -89,31 +94,8 @@ const renderProducts = (arr) => {
 const renderCartProducts = () => {
   let buttonBackToBuy = ''
   const cartEmptyMsg = 'Your cart is empty!'
-  if(cartProducts.length > 0) {
-    productGridCart.innerHTML = cartProducts.map(item => (
-      `<div class="cart-card">
-        
-        <div class="cart-card-header">
-          <img src=${item.imagesrc} alt="Product Image" id="cart-card-img">
-          <p>${item.title}</p>
-        </div>
-
-        <div class="cart-product-totals">
-          <div class="cart-product-amount">
-            <button class="btn-amount" id="btn-minus"><i class="ph-minus" aria-label="decrement amount"></i></button>
-            <p class="product-amount">${item.amount}</p>
-            <button class="btn-amount" id="btn-plus" aria-label="increment amount"><i class="ph-plus"></i>
-            </button>
-            <button class="btn-amount" productId=${item.id} id="btn-trash" aria-label="remove item from cart"><i class="ph-trash"></i></button>
-          </div>
-          <div class="cart-product-price">
-          <p class="product-price">${coinBase} ${item.price}</p>
-          </div>
-        </div>
-      </div>
-      `
-    )).join('');
-  } else {
+  
+  if(cartProducts.length <= 0) {
     productGridCart.innerHTML = 
     `<div class="empty-cart">
       <h2 class="msg-empty-cart">${cartEmptyMsg}</h2>
@@ -127,21 +109,79 @@ const renderCartProducts = () => {
     buttonBackToBuy.addEventListener('click', ()=> {
       cartSection.classList.remove('active')
     })
-  }
+  } else {
+    
+    //render product cart
+    productGridCart.innerHTML = cartProducts.map(item => (
+      `<div class="cart-card">
+        
+        <div class="cart-card-header">
+          <img src=${item.imagesrc} alt="Product Image" id="cart-card-img">
+          <p>${item.title}</p>
+        </div>
 
-  const buttonTrash = document.querySelectorAll('#btn-trash');  
-  //console.log('**** BEFORE REMOVE', cartProducts)
-  
-  buttonTrash.forEach(item => {
-    let indexOfBtnTrash = item.getAttribute('productId')
-      item.addEventListener('click', ()=>{        
-        cartProducts = cartProducts.filter(item => item.id != indexOfBtnTrash)
-        //console.log('**** AFTER REMOVE', cartProducts)
-        viewCartAmount.textContent = cartProducts.length
-        getCardAmount()
-        renderCartProducts()
+        <div class="cart-product-totals">
+          <div class="cart-product-amount">
+
+            <button class="btn-amount" id="btn-decrement-amount" productId=${item.id} aria-label="decrement amount">
+              <i class="ph-minus"></i>
+            </button>
+              
+            <p class="product-amount">${item.amount}</p>
+            
+            <button class="btn-amount" id="btn-increment-amount" productId=${item.id} aria-label="increment amount">
+              <i class="ph-plus"></i>
+            </button>
+            
+            <button class="btn-amount" productId=${item.id} id="btn-trash" aria-label="remove item from cart">
+              <i class="ph-trash"></i>
+            </button>
+
+          </div>
+          <div class="cart-product-price">
+          <p class="product-price">${coinBase} ${item.total}</p>
+          </div>
+        </div>
+      </div>
+      `
+    )).join('');
+
+    const buttonTrash = document.querySelectorAll('#btn-trash');  
+    const buttonIncrementAmount = document.querySelectorAll('#btn-increment-amount');
+    const buttonDecrementAmount = document.querySelectorAll('#btn-decrement-amount');
+     
+    //update product amount on the cart
+    let indexOfBtnIncrement
+    cartProducts.map((cartProductItem) => {
+      //increment
+      buttonIncrementAmount.forEach(item => {
+        item.addEventListener('click', () => {    
+          indexOfBtnIncrement = Number(item.getAttribute('productId'));
+          console.log(`*** BEFORE *** amount: ${cartProductItem.amount}*** price: ${cartProductItem.price}`)    
+          if(cartProductItem.id === indexOfBtnIncrement){
+            console.log(`*** product id: ${cartProductItem.id} *** index button: ${indexOfBtnIncrement}`)
+            cartProductItem.amount++
+            cartProductItem.total = updateTotalPrice(cartProductItem.amount, cartProductItem.price)   
+            console.log(`*** AFTER *** amount: ${cartProductItem.amount}*** price: ${cartProductItem.total}`)       
+          } 
+          getCardAmount()
+          renderCartProducts()  
+        })               
       })
-  })
+    })
+    
+    //delete product from cart
+    buttonTrash.forEach(item => {
+      let indexOfBtnTrash = item.getAttribute('productId')
+        item.addEventListener('click', ()=>{        
+          cartProducts = cartProducts.filter(item => item.id != indexOfBtnTrash)
+          //console.log('**** AFTER REMOVE', cartProducts)
+          viewCartAmount.textContent = cartProducts.length
+          getCardAmount()
+          renderCartProducts()
+        })
+    })
+  }
 }
 
 const cartAmountInfo = document.getElementById('section-cart-amount');
@@ -149,7 +189,7 @@ const cartAmountInfo = document.getElementById('section-cart-amount');
 const getCardAmount = () => {
   let cartAmount = 0
   cartProducts.forEach(item => {
-    cartAmount += Number(item.price)
+    cartAmount += Number(item.total)
   })
   cartAmountInfo.innerHTML = 
   `
@@ -161,7 +201,6 @@ const getCardAmount = () => {
 const buttonViewCart = document.getElementById('view-cart');
 const buttonCloseCart = document.getElementById('cart-close');
 const cartSection = document.getElementById('cart');
-const bodyMainSection = document.getElementById('main')
 
 buttonViewCart.addEventListener('click', () => {
   renderCartProducts()
