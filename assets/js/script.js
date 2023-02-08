@@ -30,6 +30,24 @@ let cartProducts = []
 let amountViewCart = 0
 viewCartAmount.textContent = amountViewCart
 
+
+//order products
+const orderBy = document.getElementById('product-select-order-by');
+
+function orderByPrice(arr) {
+  orderBy.addEventListener('change', (e)=>{
+    if(e.target.value == 'price-low-to-high'){
+      const productOrderByHighPrice = arr.sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
+      renderProducts(productOrderByHighPrice)
+    } else if(e.target.value == 'price-high-to-low'){
+      const productOrderByLowPrice = arr.sort((a, b) => parseFloat(b.price) - parseFloat(a.price))
+      renderProducts(productOrderByLowPrice)
+    } 
+      renderProducts(arr)
+    
+  })
+}
+
 function updateTotalPrice(amount, price){
   return amount * price
 }
@@ -234,6 +252,7 @@ buttonCloseCart.addEventListener('click', ()=>{
 })
 
 renderProducts(products)
+orderByPrice(products)
 viewCategoryInfo.innerHTML = `<h4>Products > Category: All</h4>`
 
 // get products category
@@ -248,6 +267,7 @@ productsCategory.forEach((item) => {
       }
     })
     renderProducts(productByCategoryFiltered)  
+    orderByPrice(productByCategoryFiltered)
     productByCategoryFiltered = []
   })
 })
