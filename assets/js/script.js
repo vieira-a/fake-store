@@ -183,7 +183,7 @@ const renderCartProducts = () => {
 
           </div>
           <div class="cart-product-price">
-          <p class="product-price">${coinBase} ${item.total}</p>
+          <h2 class="product-price">${coinBase} ${item.total}</h2>
           </div>
         </div>
       </div>

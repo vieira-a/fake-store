@@ -415,7 +415,7 @@ footer {
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: var(--bg-slate-50);
+  background-color: white;
   overflow-y: auto;
 }
 
@@ -447,6 +447,7 @@ footer {
 }
 .cart-title {
   color: var(--bg-purple-600);
+  padding: 2rem;
 }
 
 .cart-card {
@@ -500,7 +501,7 @@ footer {
 }
 
 .product-price {
-  font-size: var(--fs-2);
+  font-size: var(--fs-1);
   color: var(--bg-purple-600);
 }
 
@@ -549,5 +550,18 @@ footer {
     justify-content: start;
   }
 
+  .cart-card {
+    align-items: center;
+  }
+
+  .cart-card-header {
+    flex-direction: column;
+  }
+
+  .cart-product-totals {
+    flex-direction: column;
+    justify-content: end;
+    gap: 2rem;
+  }
 }
   
