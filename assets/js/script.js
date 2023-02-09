@@ -120,6 +120,7 @@ const renderProducts = (arr) => {
 
     item.addEventListener('click', () => {  
       let itemId = item.id - 1
+      
       cartProducts.push(
         {
           id: products[itemId].id,
@@ -129,8 +130,8 @@ const renderProducts = (arr) => {
           price: products[itemId].price,
           total: updateTotalPrice(1, products[itemId].price)
         })
-      item.disabled = true
       viewCartAmount.textContent = cartProducts.length
+      item.disabled = true
     })    
   })
 }
@@ -243,6 +244,11 @@ const renderCartProducts = () => {
           viewCartAmount.textContent = cartProducts.length
           getCardAmount()
           renderCartProducts()
+          btnAddToCart.forEach(itemBtn => {
+            if(itemBtn.id === indexOfBtnTrash){
+              itemBtn.disabled = false
+            }
+          })
         })
     })
   }
