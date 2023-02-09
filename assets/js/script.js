@@ -89,35 +89,26 @@ function updateTotalPrice(amount, price){
 const renderProducts = (arr) => {
   productGridCard.innerHTML = arr.map(item => (
     `<div class="product-card" id="product-card">
-      <p class="product-card-category" id="product-card-category">
-        ${item.category}
-      </p>
-      <div class="product-card-image" id="product-card-image">
-        <img src=${item.image} alt="Product Image">
-      </div>
+
       <div class="product-card-content" id="product-card-content">
-        <h2 class="product-card-content-title" id="product-card-content-title">
-          ${item.title}
-        </h2>
-        <p class="product-card-content-description" id="product-card-content-description">
-          ${item.description}
-        </p>
-        <p class="product-card-content-price" id="product-card-content-price">
-          ${coinBase} ${item.price}
-        </p>
-      </div>
-      <div class="product-card-content-rating">
-        <p class="product-card-content-rating-rate" id="product-card-content-rating-rate">
-        Rating: ${item.rating.rate} 
-        </p>
-        <p class="product-card-content-rating-count" id="product-card-content-rating-count">
-        Votes: ${item.rating.count}
-        </p>
-      </div>
+        <p class="product-card-category" id="product-card-category">${item.category}</p>
+        <div class="product-card-image" id="product-card-image">
+          <img src=${item.image} alt="Product Image">
+        </div>
+        <h2 class="product-card-content-title" id="product-card-content-title">${item.title}</h2>
+        <p class="product-card-content-description" id="product-card-content-description">${item.description}</p>
+        <div class="product-card-content-value">
+          <div class="product-card-content-rating">
+            <p class="product-card-content-rating-rate" id="product-card-content-rating-rate">Rating: ${item.rating.rate} </p>
+            <p class="product-card-content-rating-count" id="product-card-content-rating-count">Votes: ${item.rating.count}</p>
+          </div>
+          <p class="product-card-content-price" id="product-card-content-price">${coinBase} ${item.price}</p>
+        </div>
+      </div> 
       <button class="btn-add-to-cart" id="${item.id}" add-to-cart>
         <i class="ph-bag"></i>
         <span>Add to cart</span>
-      </button>
+      </button>   
     </div>`
     )
   ).join('');

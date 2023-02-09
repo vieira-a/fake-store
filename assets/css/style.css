@@ -261,15 +261,16 @@ main {
   gap: 1.2rem;
   border: 1px solid var(--text-slate-300);
   border-radius: var(--radius-8);
+  padding: 2rem;
 }
 
 .product-card-image {
-  margin-inline: 2rem;
+  padding-block: 2rem;
 }
 
 .product-card-image img {  
-  max-width: 75%;
-  margin-inline: auto;
+  max-width: 50%;
+  margin: auto;
 }
 
 .product-card-category {
@@ -277,39 +278,47 @@ main {
   text-transform: uppercase;
   font-weight: var(--fw-700);
   color: var(--text-purple-600);
-  padding: 2rem;
 }
 
 .product-card-content {
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .product-card-content-title,
 .product-card-content-price {
   font-size: var(--fs-1);
   font-weight: var(--fw-700);
-  padding-inline: 2rem;
+}
+
+.product-card-content-price{
+  text-align: right;
 }
 
 .product-card-content-description {
   color: var(--text-slate-500);
-  margin: 2rem 2rem;
+}
+
+.product-card-content-value {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .product-card-content-rating {
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
   gap: 1rem;
   font-size: var(--fs-4);
   font-weight: var(--fw-700);
   color: var(--bg-purple-600);
-  padding-inline: 2rem;
 }
 
 .btn-add-to-cart,
 .btn-show-all-products,
 #btn-back-to-buy {
-  width: 80%;
+  width: 90%;
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -320,7 +329,7 @@ main {
   justify-content: center;
   background-color: var(--bg-purple-600);
   border-radius: var(--radius-8);
-  margin: 2rem auto 4rem auto;
+  margin-inline: auto;
   box-shadow: var(--shadow-1);
 }
 
@@ -515,3 +524,30 @@ footer {
 .empty-cart h2 {
   color: var(--bg-purple-600);
 }
+
+@media (min-width: 1024px) {
+  .product-grid-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-inline: auto;
+  }
+
+  #product-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .product-card-image img {  
+    max-height: 100px;  
+  }
+
+  #product-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+
+}
+  
