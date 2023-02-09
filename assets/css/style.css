@@ -349,7 +349,8 @@ transition: var(--transition-1);
 }
 
 .btn-show-all-products {
-display: none;
+  display: none;
+  margin-bottom: 2rem;
 }
 
 .btn-add-to-cart i,

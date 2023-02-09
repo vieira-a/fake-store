@@ -18,7 +18,7 @@ const footerMenuList = document.getElementById('footer-menu-list');
 function setMenuItems(){
   menuItemsList.innerHTML = menuItems.map(category => (
     `
-    <li class="navbar-item" data-nav-toggler>
+    <li class="navbar-item">
       <a category href="#">${category}</a>
     </li>
     `
@@ -283,6 +283,7 @@ viewCategoryInfo.innerHTML = `<h4>Products > Category: All</h4>`
 // get products category
 productsCategory.forEach((item) => {
   item.addEventListener('click', () => {
+    navBar.classList.remove('active')
     productCategoryOption = item.textContent
     buttonShowAllProducts.classList.add('active');
     products.map((item) => {
