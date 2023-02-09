@@ -14,9 +14,9 @@ Personal project to practice knoldgements in HTML, CSS and JavaScript.
 
 <br>
 
-<!-- <p align="center">
-  <img alt="personalcard" src=".github/bg-cover.png" width="100%">
-</p> -->
+<p align="center">
+  <img alt="Fake Store" src=".github/bg-cover.png" width="100%">
+</p>
 
 ## Techs
 
